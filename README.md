@@ -1,3 +1,6 @@
+---
+output: pdf_document
+---
 ## Introduction
 
 This assignment uses data from

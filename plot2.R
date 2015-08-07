@@ -1,0 +1,10 @@
+#set working directory to location of unzipped ".txt" file
+consumption <- read.table("household_power_consumption.txt", header = TRUE, sep = ";", na.strings = "?")
+library("dplyr", lib.loc="~/R/win-library/3.2")
+consumption=mutate(consumption, DateTime=paste(Date, Time))
+consumption$DateTime=strptime(consumption$DateTime, "%d/%m/%Y %H:%M:%S")
+consumption$Date=as.Date(consumption$Date, "%d/%m/%Y")
+plotdays=subset(consumption, Date=="2007-02-01" | Date=="2007-02-02")
+png(filename = "plot2.png")
+with(plotdays, plot(DateTime, Global_active_power, xlab="", ylab = "Global Active Power (kilowatts)", type = "l"))
+dev.off()
